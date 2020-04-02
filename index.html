@@ -1,0 +1,93 @@
+<html>
+<head>
+    <title>PPF Calculator</title>
+    <link type="text/css" rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Unica+One" type="text/css">
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="highchart_theme.js"></script>
+    <script src="app.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h2 class="title text-center">Welcome to PPF calculator</h2>
+        <br>
+        <form>
+            <div class="form-group row">
+                <label for="amount" class="col-4">Investment amount</label>
+                <div class="col-8 input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">&#8377;</span>
+                    </div>
+                    <input type="number" min="0" max="9999999" value="60000" class="form-control" id="amount" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="amount" class="col-4">Investment recurrence</label>
+                <div class="col-8 input-group">
+                    <select class="custom-select" id="recurrence">
+                        <option value="yearly">Yearly</option>
+                        <option value="half_yearly">Half yearly</option>
+                        <option value="quarterly">Quarterly</option>
+                        <option value="monthly">Monthly</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="interest" class="col-4">Interest Rate</label>
+                <div class="col-8 input-group">
+                    <input type="number" min="0" max="100" value="7.1" class="form-control" id="interest" />
+                    <div class="input-group-append">
+                        <span class="input-group-text">%</span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="period" class="col-4">Lock-in Period</label>
+                <div class="col-8 input-group">
+                    <input type="number" min="0" max="50" value="15" class="form-control" id="period" />
+                    <div class="input-group-append">
+                        <span class="input-group-text">years</span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <button type="button" class="btn btn-primary m-auto" onclick="calculate()">Calculate</button>
+            </div>
+        </form>
+        <div id="results" style="display: none;">
+            <ul class="nav nav-tabs nav-justified">
+                <li class="nav-item">
+                  <a class="nav-link active" id="table-tab" href="#" onclick="showGraph(false)">Table</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="graph-tab" href="#" onclick="showGraph(true)">Graph</a>
+                </li>
+            </ul>
+            <div class="p-3">
+                <div class="table-responsive" id="table">
+                    <table class="table table-hover w-75 m-auto table-dark">
+                        <thead>
+                            <tr>
+                                <th scope="col">If this amount is invested</th>
+                                <th scope="col">Monthly</th>
+                                <th scope="col">Quarterly</th>
+                                <th scope="col">Half Yearly</th>
+                                <th scope="col">Yearly</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr id="tot_investment"></tr>
+                            <tr id="int_earned"></tr>
+                            <tr id="finalAmnt" class="bg-success"></tr>
+                            <tr id="roi"></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div id="graph2" style="display: none;"></div>
+                <br />
+                <div id="graph" style="display: none;"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
